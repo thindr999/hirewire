@@ -6,13 +6,13 @@
 
 <body style="font-family: Arial; margin:0;">
 
-<!-- TOP BAR -->
 <div style="background:black; color:white; padding:15px;">
   <h2>HireWire Dashboard</h2>
 </div>
 
-<!-- CONTENT -->
 <div style="padding:20px;">
+
+  <h3 id="welcome"></h3>
 
   <h3>Available Jobs</h3>
 
@@ -22,19 +22,24 @@
     <button>Accept Job</button>
   </div>
 
-  <div style="border:1px solid #ccc; padding:15px; margin-bottom:10px;">
-    <h4>Bartender - Event</h4>
-    <p>$35/hr • Saturday Night</p>
-    <button>Accept Job</button>
-  </div>
-
-  <div style="border:1px solid #ccc; padding:15px;">
-    <h4>Kitchen Hand</h4>
-    <p>$28/hr • Full Day Shift</p>
-    <button>Accept Job</button>
-  </div>
+  <button onclick="logout()">Logout</button>
 
 </div>
+
+<script>
+let user = JSON.parse(localStorage.getItem("hirewire_user"));
+
+if (!user) {
+  window.location.href = "login.html";
+} else {
+  document.getElementById("welcome").innerText = "Welcome, " + user.name;
+}
+
+function logout() {
+  localStorage.removeItem("hirewire_user");
+  window.location.href = "index.html";
+}
+</script>
 
 </body>
 </html>
