@@ -8,15 +8,34 @@
 
 <h1>Login</h1>
 
-<input type="email" placeholder="Email" style="padding:10px; width:250px;"><br><br>
-<input type="password" placeholder="Password" style="padding:10px; width:250px;"><br><br>
+<input id="email" type="email" placeholder="Email" style="padding:10px; width:250px;"><br><br>
+<input id="password" type="password" placeholder="Password" style="padding:10px; width:250px;"><br><br>
 
-<a href="dashboard.html">
-  <button>Login</button>
-</a>
+<button onclick="login()">Login</button>
 
 <br><br>
 <a href="index.html">Back to Home</a>
+
+<script>
+function login() {
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+
+  let savedUser = JSON.parse(localStorage.getItem("hirewire_user"));
+
+  if (!savedUser) {
+    alert("No account found. Please sign up first.");
+    return;
+  }
+
+  if (email === savedUser.email && password === savedUser.password) {
+    alert("Login successful!");
+    window.location.href = "dashboard.html";
+  } else {
+    alert("Invalid credentials");
+  }
+}
+</script>
 
 </body>
 </html>
