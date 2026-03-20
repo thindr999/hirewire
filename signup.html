@@ -8,16 +8,35 @@
 
 <h1>Create Account</h1>
 
-<input type="text" placeholder="Full Name" style="padding:10px; width:250px;"><br><br>
-<input type="email" placeholder="Email" style="padding:10px; width:250px;"><br><br>
-<input type="password" placeholder="Password" style="padding:10px; width:250px;"><br><br>
+<input id="name" type="text" placeholder="Full Name" style="padding:10px; width:250px;"><br><br>
+<input id="email" type="email" placeholder="Email" style="padding:10px; width:250px;"><br><br>
+<input id="password" type="password" placeholder="Password" style="padding:10px; width:250px;"><br><br>
 
-<a href="dashboard.html">
-  <button style="padding:10px 20px;">Sign Up</button>
-</a>
+<button onclick="signup()">Sign Up</button>
 
 <br><br>
 <a href="index.html">Back to Home</a>
+
+<script>
+function signup() {
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+
+  if (!email || !password) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  let user = { name, email, password };
+
+  localStorage.setItem("hirewire_user", JSON.stringify(user));
+
+  alert("Account created!");
+
+  window.location.href = "dashboard.html";
+}
+</script>
 
 </body>
 </html>
